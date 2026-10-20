@@ -16,6 +16,14 @@
 
 ## 使用
 
+### 直接运行版
+
+到 [Releases 下载页面](https://github.com/allowing8628/PCL-Feature-Restore/releases/latest)，下载名称以 `.exe` 结尾的附件，保存到有写入权限的独立文件夹后双击运行。不需要运行补丁脚本、编译源码或安装 PowerShell 7。首次使用按 PCL 提示配置账号、游戏目录与 Java；游戏下载仍需要网络。
+
+发布附件是已实测的第三方修复版，附带许可说明和 SHA-256 校验文件。与原版启动器区分，使用前先备份已有启动器。实际测试范围见下方，完整安装与游戏启动尚未测试。
+
+### 从源码生成
+
 需要 Windows、PowerShell 7.4+ 和网络连接。在 PowerShell 7 中运行：
 
 ```powershell
@@ -24,7 +32,7 @@
 
 脚本从上游固定标签下载原始启动器、参考旧版本以及 NuGet 的 dnlib 4.5.0，核对固定 SHA-256 后仅在仓库的 `.work/`、`dist/` 生成文件。不会启动 PCL，不会读取或覆盖你已有的启动器、配置及游戏文件。生成结果位于 `dist/Plain Craft Launcher (PCL) Feature Restore.exe`。先自行备份已有启动器，再按需使用生成文件。
 
-这里公开的是补丁项目。仓库不打包上游完整源码、修改后的 EXE、用户配置或游戏文件；上游源码可从固定的 [2.99.0.0 标签](https://github.com/Meloong-Git/PCL/tree/2.99.0.0) 查看。发布和使用衍生产物时仍须遵守上游条款。
+仓库保存补丁源码，直接运行版 EXE 单独放在 Releases。仓库与发布附件不包含用户配置、账号、游戏或存档；上游源码可从固定的 [2.99.0.0 标签](https://github.com/Meloong-Git/PCL/tree/2.99.0.0) 查看。发布和使用衍生产物时仍须遵守上游条款。
 
 ## 验证状态
 
