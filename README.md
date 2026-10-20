@@ -1,2 +1,43 @@
-# PCL-Feature-Restore
-Plain Craft Launcher (PCL) Feature Restore - independent third-party patch sources and local build scripts for 2.99.0.0
+# Plain Craft Launcher (PCL) Feature Restore — 第三方功能恢复补丁
+
+原作者：**龙腾猫跃** · [上游项目](https://github.com/Meloong-Git/PCL) · [赞助原作者](https://meloong.com/afd/a/LTCat)
+
+本项目是第三方独立制作的 PCL **2.99.0.0** 功能恢复补丁，与原作者及官方没有从属或授权背书关系。公开补丁生成源码、可复现的本地生成脚本及验证范围。原项目采用自定义许可，不能将本仓库理解为对 PCL 全部代码重新授予 MIT/GPL 许可。上游许可与使用指南原文保留于 [LICENCE](LICENCE)。
+
+## 恢复内容
+
+- Minecraft 版本列表和下载配置入口。
+- 选择已有整合包、拖入导入、识别后调用现有格式安装器。
+- 在线整合包版本点击安装，同时保留另存为。
+- 已有实例修改页的 Minecraft 本体版本列表。
+- 修复补回导入逻辑后的 finally 异常处理范围，避免 InvalidProgramException。
+
+补丁不修改正版购买劝导、原作者署名、赞助或主题解锁逻辑。恢复的是上述禁用入口，并未承诺恢复所有可能的功能，也未更改本地自动更新设置。
+
+## 使用
+
+需要 Windows、PowerShell 7.4+ 和网络连接。在 PowerShell 7 中运行：
+
+```powershell
+./Build.ps1
+```
+
+脚本从上游固定标签下载原始启动器、参考旧版本以及 NuGet 的 dnlib 4.5.0，核对固定 SHA-256 后仅在仓库的 `.work/`、`dist/` 生成文件。不会启动 PCL，不会读取或覆盖你已有的启动器、配置及游戏文件。生成结果位于 `dist/Plain Craft Launcher (PCL) Feature Restore.exe`。先自行备份已有启动器，再按需使用生成文件。
+
+这里公开的是补丁项目。仓库不打包上游完整源码、修改后的 EXE、用户配置或游戏文件；上游源码可从固定的 [2.99.0.0 标签](https://github.com/Meloong-Git/PCL/tree/2.99.0.0) 查看。发布和使用衍生产物时仍须遵守上游条款。
+
+## 验证状态
+
+2026-10-21 在 Windows 实际运行验证：启动、MC 列表及组件选择、选择文件/拖入 Modrinth 包至命名弹窗、在线包至命名弹窗、实际另存为下载、已有实例 MC 版本选择列表均通过。
+
+**没有执行完整游戏/整合包安装、组件替换或 Minecraft 启动，也没有逐一运行验证全部整合包格式。** 静态检查与运行验证分别记录，不把入口可用视为完整安装成功。详情见 [验证报告](docs/VALIDATION.md) 和 [实现说明](docs/IMPLEMENTATION.md)。
+
+重新生成的文件可能因 PE/元数据写入产生不同哈希；历史运行验证的文件 SHA-256 为 `78939D5A348F97632ED5159E8C0F1525B270AD4CDC2B4797AE35C69C0845023F`。构建会输出本次哈希和静态验证结果。
+
+## 来源与许可
+
+- PCL：龙腾猫跃及上游贡献者，自定义分发许可和合理使用指南，见 [LICENCE](LICENCE)。本项目保留其适用条件，不覆盖第三方原有权利。
+- dnlib 4.5.0：[项目与 MIT 许可证](https://github.com/0xd4d/dnlib)。构建时下载，不随仓库分发其二进制。
+- 本项目的独立脚本与补丁工具源代码同样按本仓库保留的上游指南使用；这不表示上游对本项目提供了审核或认可。
+
+这是一次性的实验性恢复，没有长期维护承诺。问题请先在本仓库报告，并附去除账号、令牌和个人路径的复现步骤。

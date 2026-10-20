@@ -1,0 +1,9 @@
+.work/
+dist/
+*.exe
+*.dll
+*.zip
+*.mrpack
+*.log
+Setup.ini
+.env*
